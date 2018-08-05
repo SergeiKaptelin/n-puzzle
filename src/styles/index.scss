@@ -1,0 +1,83 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.container {
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 380px;
+}
+
+.grid-container {
+  float: left;
+  width: 210px;
+  height: 250px;
+  text-align: center;
+  width: 50%;
+}
+
+.grid-container h2 {
+  font-family: Tahoma;
+}
+
+.grid {
+  background-color: rgb(248, 248, 248);
+  border: solid 5px rgb(249, 90, 0);
+  width: 210px;
+  height: 210px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
+  box-shadow: 5px 5px #d8d8d8, 5px 5px #d8d8d8;
+  overflow: auto;
+}
+
+.grid-container button {
+  margin-top: 30px;
+  background-color: rgb(88, 132, 191);
+  color: white;
+  text-transform: uppercase;
+  height: 40px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.row {
+  height: 33.3%;
+}
+
+.cell {
+  width: 32.3%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  font-size: 150%;
+  font-family: Arial;
+  font-weight: bold;
+  position: relative;
+}
+
+.cell:hover {
+  background-color: rgb(221, 221, 221);
+}
+
+.cell span {
+  display: block;
+  transform: translateY(70%);
+}
+
+#panel {
+  width: 100%;
+  background-color: rgb(180, 180, 180);
+  min-height: 1000px;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  font-family: Arial;
+}
