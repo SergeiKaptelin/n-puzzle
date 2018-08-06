@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2015,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      { "SwitchCase": 1 }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "switch-colon-spacing": 0,
+    "func-call-spacing": 0,
+    "max-len": [2, 120, 2, { "ignoreStrings": true }],
+    "new-cap": 0,
+    "no-invalid-this": 0,
+    "no-console": 0,
+    "no-case-declarations": 0,
+    "no-debugger": 0
+  }
+}
