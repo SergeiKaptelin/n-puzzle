@@ -23,8 +23,8 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: ['env']
+        query: {
+          presets: ["es2015", "stage-0"]
         }
       },
       {
