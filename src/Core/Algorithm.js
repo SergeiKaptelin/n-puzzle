@@ -22,7 +22,7 @@ class AStar {
   }
 
   heuristic = (node) => {
-    return this.manhattanDistance(node) + this.linearConflicts(node);
+    return this.manhattanDistance(node) + this.manhattanDistance(node);
   };
 
   misplacedTiles = (node) => {
