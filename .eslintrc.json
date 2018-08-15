@@ -1,12 +1,16 @@
 {
+  "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "plugins": [
+    "babel"
+  ],
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
-  "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2015,
+    "ecmaVersion": 7,
     "sourceType": "module"
   },
   "rules": {
@@ -34,6 +38,7 @@
     "no-invalid-this": 0,
     "no-console": 0,
     "no-case-declarations": 0,
-    "no-debugger": 0
+    "no-debugger": 0,
+    "babel/no-invalid-this": 0
   }
 }

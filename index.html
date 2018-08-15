@@ -25,7 +25,8 @@
 <div class="container">
 <div class="grid-container">
   <h2> Initial Config </h2>
-  <div class="grid start">
+  <!-- ~200 ms on i7 -->
+  <!-- <div class="grid start">
       <div class="row">
         <div class="cell" data-pos="0,0"><span>6</span></div>
         <div class="cell" data-pos="0,1"><span>4</span></div>
@@ -41,7 +42,25 @@
         <div class="cell" data-pos="2,1"><span>2</span></div>
         <div class="cell" data-pos="2,2"><span>1</span></div>
       </div>
-  </div>
+  </div> -->
+  <!-- ~100 ms on i7 -->
+  <div class="grid start">
+        <div class="row">
+          <div class="cell" data-pos="0,0"><span>7</span></div>
+          <div class="cell" data-pos="0,1"><span>4</span></div>
+          <div class="cell" id="empty" data-pos="0,2"></div>
+        </div>
+        <div class="row">
+          <div class="cell" data-pos="1,0"><span>2</span></div>
+          <div class="cell" data-pos="1,1"><span>6</span></div>
+          <div class="cell" data-pos="1,2"><span>8</span></div>
+        </div>
+        <div class="row">
+          <div class="cell" data-pos="2,0"><span>1</span></div>
+          <div class="cell" data-pos="2,1"><span>3</span></div>
+          <div class="cell" data-pos="2,2"><span>5</span></div>
+        </div>
+    </div>
 
   <button id="solve"> Solve </button>
   <button id="show-solutions"> Show Step </button>
