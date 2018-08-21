@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --config webpack.dev.js --mode development",
     "build": "webpack --config webpack.prod.js --mode production",
     "preview": "npm run build && http-server dist",
-    "compile": "npx eslint -c .eslintrc.json ./src/ && npx babel ./src --source-maps-inline -d ./dist --presets=es2015,stage-0"
+    "compile": "npx eslint -c .eslintrc.json ./src/ && npx babel ./src --source-maps-inline -d ./dist --presets=es2015,stage-0",
+    "execute": "npm run compile && node ./dist/app.js"
   },
   "repository": {
     "type": "git",

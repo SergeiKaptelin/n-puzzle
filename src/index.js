@@ -1,7 +1,7 @@
 import $ from "jquery";
 
-import AStar from "./Core/Algorithm";
-import Node from "./Core/Node";
+import AStar from "./core/Algorithm";
+import Node from "./core/Node";
 
 import "normalize.css/normalize.css";
 import "./styles/index.scss";
