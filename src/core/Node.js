@@ -1,3 +1,6 @@
+import {error} from "../notifications/Notification";
+import {DIFFERS_ROWS_AND_COLUMNS} from "../constants/Constants";
+
 class Node {
   constructor(value, state, emptyRow, emptyCol, depth) {
     this.value = value;
@@ -12,7 +15,7 @@ class Node {
     for (var i = 0; i < state.length; i++) {
       // We assume the state is a square
       if (state[i].length != state.length) {
-        alert("Number of rows differs from number of columns");
+        error(DIFFERS_ROWS_AND_COLUMNS);
         return false;
       }
 
