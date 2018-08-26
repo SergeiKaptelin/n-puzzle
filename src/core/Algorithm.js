@@ -1,5 +1,6 @@
 import PriorityQueue from "js-priority-queue";
 
+
 import HashSet from "../utils/jshashtable/hashset";
 import Node from "./Node";
 
@@ -19,6 +20,8 @@ class AStar {
     });
     this.queue.queue(initial);
     this.visited = new HashSet();
+    this.complexityInTime = 0;
+    this.complexityInSize = 0;
   }
 
   heuristic = (node) => {
@@ -125,8 +128,13 @@ class AStar {
     while (this.queue.length > 0) {
       var current = this.queue.dequeue();
 
-      if (current.strRepresentation == this.goal.strRepresentation)
-        return current;
+      if (current.strRepresentation == this.goal.strRepresentation) {
+        return {
+          ...current,
+          complexityInSize: this.complexityInSize,
+          complexityInTime: this.complexityInTime,
+        };
+      }
 
       this.expandNode(current);
     }
@@ -146,12 +154,14 @@ class AStar {
       newState[row - 1][col] = this.empty;
       newState[row][col] = temp;
       newNode = new Node(0, newState, row - 1, col, node.depth + 1);
+      this.complexityInSize += 1;
 
       if (!this.visited.contains(newNode.strRepresentation)) {
         newNode.value = newNode.depth + this.heuristic(newNode);
         newNode.path = node.path + "U";
         this.queue.queue(newNode);
         this.visited.add(newNode.strRepresentation);
+        this.complexityInTime += 1;
       }
     }
 
@@ -162,12 +172,14 @@ class AStar {
       newState[row + 1][col] = this.empty;
       newState[row][col] = temp;
       newNode = new Node(0, newState, row + 1, col, node.depth + 1);
+      this.complexityInSize += 1;
 
       if (!this.visited.contains(newNode.strRepresentation)) {
         newNode.value = newNode.depth + this.heuristic(newNode);
         newNode.path = node.path + "D";
         this.queue.queue(newNode);
         this.visited.add(newNode.strRepresentation);
+        this.complexityInTime += 1;
       }
     }
 
@@ -178,12 +190,14 @@ class AStar {
       newState[row][col - 1] = this.empty;
       newState[row][col] = temp;
       newNode = new Node(0, newState, row, col - 1, node.depth + 1);
+      this.complexityInSize += 1;
 
       if (!this.visited.contains(newNode.strRepresentation)) {
         newNode.value = newNode.depth + this.heuristic(newNode);
         newNode.path = node.path + "L";
         this.queue.queue(newNode);
         this.visited.add(newNode.strRepresentation);
+        this.complexityInTime += 1;
       }
     }
 
@@ -194,12 +208,14 @@ class AStar {
       newState[row][col + 1] = this.empty;
       newState[row][col] = temp;
       newNode = new Node(0, newState, row, col + 1, node.depth + 1);
+      this.complexityInSize += 1;
 
       if (!this.visited.contains(newNode.strRepresentation)) {
         newNode.value = newNode.depth + this.heuristic(newNode);
         newNode.path = node.path + "R";
         this.queue.queue(newNode);
         this.visited.add(newNode.strRepresentation);
+        this.complexityInTime += 1;
       }
     }
   }

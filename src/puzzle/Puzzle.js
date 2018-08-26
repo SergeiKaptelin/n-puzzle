@@ -3,7 +3,7 @@ import fs from "fs";
 import {error} from "../notifications/Notification";
 import {FILE_NOT_EXIST} from "../constants/Constants";
 
-export const loadPuzzle = (filename) => {
+const loadPuzzle = (filename) => {
   if (fs.existsSync(filename)) {
     const state = fs.readFileSync(filename).toString()
     //removing comments
@@ -20,7 +20,7 @@ export const loadPuzzle = (filename) => {
       emptyRow,
       emptyCol,
     };
-  } else  {
+  } else {
     error(FILE_NOT_EXIST, filename);
     process.exit(0);
   }
@@ -38,7 +38,7 @@ const getEmptyCellCoordinates = (state) => {
   return {emptyCol, emptyRow};
 };
 
-export const generateGoal = (size) => {
+const generateGoal = (size) => {
   let goalState = [];
   const emptyRow = size - 1;
   const emptyCol = size - 1;
@@ -61,4 +61,45 @@ export const generateGoal = (size) => {
     emptyRow,
     emptyCol,
   };
+};
+
+const isSolvable = (state) => {
+  let puzzle = [];
+  state.forEach((row) => puzzle = [...puzzle, ...row]);
+
+  let parity = 0;
+  const gridWidth = Math.sqrt(puzzle.length);
+  let row = 0; // the current row we are on
+  let blankRow = 0; // the row with the blank tile
+
+  for (let i = 0; i < puzzle.length; i++) {
+    if (i % gridWidth == 0) { // advance to next row
+      row++;
+    }
+    if (puzzle[i] == 0) { // the blank tile
+      blankRow = row; // save the row on which encountered
+      continue;
+    }
+    for (let j = i + 1; j < puzzle.length; j++) {
+      if (puzzle[i] > puzzle[j] && puzzle[j] != 0) {
+        parity++;
+      }
+    }
+  }
+
+  if (gridWidth % 2 == 0) { // even grid
+    if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
+      return parity % 2 == 0;
+    } else { // blank on even row; counting from bottom
+      return parity % 2 != 0;
+    }
+  } else { // odd grid
+    return parity % 2 == 0;
+  }
+};
+
+export {
+  loadPuzzle,
+  generateGoal,
+  isSolvable,
 };
