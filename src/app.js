@@ -4,12 +4,16 @@ import AStar from "./core/Algorithm";
 import Node from "./core/Node";
 import {usage} from "./notifications/Notification";
 import {findFlags} from "./utils/flagsUtils";
-import {validateParams} from "./validations/ParamsValidations";
+import {validateParams, isAllovedHeuristic} from "./validations/ParamsValidations";
 import {loadPuzzle, generateGoal, isSolvable} from "./puzzle/Puzzle";
 
 const flagIndexes = findFlags();
 validateParams(flagIndexes);
-if (!flagIndexes.hasOwnProperty("filename")) {
+if (!flagIndexes.hasOwnProperty("filename") || !flagIndexes.hasOwnProperty("heuristic")) {
+  usage();
+}
+const heuristicName = process.argv[flagIndexes.heuristic + 1];
+if (!isAllovedHeuristic(heuristicName)) {
   usage();
 }
 
@@ -24,7 +28,7 @@ const init = new Node(0, puzzle.state, puzzle.emptyRow, puzzle.emptyCol, 0);
 const goal = new Node(0, goalPuzzle.state, goalPuzzle.emptyRow, puzzle.emptyCol, 0);
 const astar = new AStar(init, goal, 0);
 const startTime = new Date();
-const result = astar.execute();
+const result = astar.execute(heuristicName);
 const endTime = new Date();
 
 console.log(colors.green("Complexity in time:"), colors.yellow(result.complexityInTime));

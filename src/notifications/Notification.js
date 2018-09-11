@@ -12,8 +12,12 @@ const errorMessages = (key, message) => {
 };
 
 const usage = () => {
-  console.log(colors.yellow("Usage: ./npuzzle -f filename"));
+  console.log(colors.yellow("Usage: ./npuzzle -f filename -h (manh | lin | misp)"));
   console.log(colors.yellow("  -f, --filename: path to npuzzle field file"));
+  console.log(colors.yellow("  -h, --heuristic: heuristic functions, could be:"));
+  console.log(colors.yellow("     manh - manhattan distance"));
+  console.log(colors.yellow("     lin  - linear conflicts"));
+  console.log(colors.yellow("     misp - misplaced tiles"));
   process.exit(0);
 };
 
