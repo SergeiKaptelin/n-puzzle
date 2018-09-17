@@ -22,73 +22,110 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-<div class="grid-container">
-  <h2> Initial Config </h2>
-  <!-- ~200 ms on i7 -->
-  <!-- <div class="grid start">
+
+<div class="section">
+  <h1 class="title">
+    N-puzzle
+  </h1>
+  <div class="wrapper">
+    <div class="field smallField">
       <div class="row">
-        <div class="cell" data-pos="0,0"><span>6</span></div>
-        <div class="cell" data-pos="0,1"><span>4</span></div>
-        <div class="cell" data-pos="0,2"><span>7</span></div>
+        <div class="cell" data-pos="0,0">1</div>
+        <div class="cell" data-pos="0,1">2</div>
+        <div class="cell" data-pos="0,2">3</div>
       </div>
       <div class="row">
-        <div class="cell" data-pos="1,0"><span>8</span></div>
-        <div class="cell" data-pos="1,1"><span>5</span></div>
-        <div class="cell" id="empty" data-pos="1,2"></div>
+        <div class="cell" data-pos="1,0">4</div>
+        <div class="cell" data-pos="1,1">5</div>
+        <div class="cell" data-pos="1,2">6</div>
       </div>
       <div class="row">
-        <div class="cell" data-pos="2,0"><span>3</span></div>
-        <div class="cell" data-pos="2,1"><span>2</span></div>
-        <div class="cell" data-pos="2,2"><span>1</span></div>
+        <div class="cell" data-pos="2,0">7</div>
+        <div class="cell" data-pos="2,1">8</div>
+        <div class="cell empty" data-pos="2,2"></div>
       </div>
-  </div> -->
-  <!-- ~100 ms on i7 -->
-  <div class="grid start">
-        <div class="row">
-          <div class="cell" data-pos="0,0"><span>7</span></div>
-          <div class="cell" data-pos="0,1"><span>4</span></div>
-          <div class="cell" id="empty" data-pos="0,2"></div>
-        </div>
-        <div class="row">
-          <div class="cell" data-pos="1,0"><span>2</span></div>
-          <div class="cell" data-pos="1,1"><span>6</span></div>
-          <div class="cell" data-pos="1,2"><span>8</span></div>
-        </div>
-        <div class="row">
-          <div class="cell" data-pos="2,0"><span>1</span></div>
-          <div class="cell" data-pos="2,1"><span>3</span></div>
-          <div class="cell" data-pos="2,2"><span>5</span></div>
-        </div>
     </div>
-
-  <button id="solve"> Solve </button>
-  <button id="show-solutions"> Show Step </button>
-</div>
-
-<div class="grid-container">
-  <h2> Goal Config </h2>
-  <div class="grid goal">
+    <div class="field largeField" style="display: none;">
       <div class="row">
-        <div class="cell"><span>1</span></div>
-        <div class="cell"><span>2</span></div>
-        <div class="cell"><span>3</span></div>
+        <div class="cell" data-pos="0,0">1</div>
+        <div class="cell" data-pos="0,1">2</div>
+        <div class="cell" data-pos="0,2">3</div>
+        <div class="cell" data-pos="0,3">4</div>
       </div>
       <div class="row">
-        <div class="cell"><span>4</span></div>
-        <div class="cell"><span>5</span></div>
-        <div class="cell"><span>6</span></div>
+        <div class="cell" data-pos="1,0">5</div>
+        <div class="cell" data-pos="1,1">6</div>
+        <div class="cell" data-pos="1,2">7</div>
+        <div class="cell" data-pos="1,3">8</div>
       </div>
       <div class="row">
-        <div class="cell"><span>7</span></div>
-        <div class="cell"><span>8</span></div>
-        <div class="cell"></div>
+        <div class="cell" data-pos="2,0">9</div>
+        <div class="cell" data-pos="2,1">10</div>
+        <div class="cell" data-pos="2,2">11</div>
+        <div class="cell" data-pos="2,3">12</div>
       </div>
+      <div class="row">
+        <div class="cell" data-pos="2,0">13</div>
+        <div class="cell" data-pos="2,1">14</div>
+        <div class="cell" data-pos="2,2">15</div>
+        <div class="cell empty" data-pos="2,3"></div>
+      </div>
+    </div>
+    <div class="puzzle-configuration">
+      <div class="configuration-title">
+        Puzzle configuration
+      </div>
+      <div class="options-wrap">
+        <div class="conf-label">
+          Puzzle type:
+        </div>
+        <div class="radio-buttons-block">
+          <div>
+            <input type="radio" class="checkbox" id="3x3" name="mjau" checked>
+            <label class="label" for="3x3">3x3</label>
+          </div>
+          <div>
+            <input type="radio" class="checkbox" id="4x4" name="mjau">
+            <label class="label" for="4x4">4x4</label>
+          </div>
+        </div>
+      </div>
+      <div class="options-wrap">
+        <div class="conf-label">
+          Algorithm type:
+        </div>
+        <div>
+          A*
+        </div>
+      </div>
+      <div class="select-wrap">
+        <div class="conf-label select-label">
+          Heuristic type:
+        </div>
+        <div id="heuristic-select" class="select-box">
+          <input id="manhattanDistance" type="radio" name="hover-select" checked>
+          <label for="manhattanDistance">
+            Manhattan distance
+          </label>
+          <input id="linearConflicts" type="radio" name="hover-select">
+          <label for="linearConflicts">
+            Linear conflicts
+          </label>
+          <input id="misplacedTiles" type="radio" name="hover-select">
+          <label for="misplacedTiles">
+            Misplaced tiles
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-</div>
-<div id="panel">
+  <div class="button-section">
+    <button href="" class="button btnFloat btnLightBlue random-button">Random</button>
+    <button href="" class="button btnFloat btnBlueGreen solve-button">Solve</button>
+  </div>
+  <div class="result">
+    Result
+  </div>
 </div>
 </body>
 </html>
