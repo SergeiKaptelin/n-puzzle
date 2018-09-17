@@ -1,6 +1,5 @@
 import PriorityQueue from "js-priority-queue";
 
-
 import HashSet from "../utils/jshashtable/hashset";
 import Node from "./Node";
 
@@ -22,10 +21,18 @@ class AStar {
     this.visited = new HashSet();
     this.complexityInTime = 0;
     this.complexityInSize = 0;
+    this.selectedHeuristic = "";
   }
 
   heuristic = (node) => {
-    return this.manhattanDistance(node) + this.manhattanDistance(node);
+    switch (this.selectedHeuristic) {
+      case "manh":
+        return this.manhattanDistance(node) + this.manhattanDistance(node);
+      case "lin":
+        return this.manhattanDistance(node) + this.linearConflicts(node);
+      case "misp":
+        return this.misplacedTiles(node);
+    }
   };
 
   misplacedTiles = (node) => {
@@ -121,9 +128,10 @@ class AStar {
       : 0;
   };
 
-  execute = () => {
+  execute = (selectedHeuristic) => {
     // Add current state to visited list
     this.visited.add(this.initial.strRepresentation);
+    this.selectedHeuristic = selectedHeuristic;
 
     while (this.queue.length > 0) {
       var current = this.queue.dequeue();

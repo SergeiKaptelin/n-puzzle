@@ -1,4 +1,4 @@
-import {FLAGS} from "../constants/Constants";
+import {FLAGS, HEURISTICS} from "../constants/Constants";
 import {usage} from "../notifications/Notification";
 
 export const validateParams = (flagIndexes) => {
@@ -17,4 +17,8 @@ const isNextFlag = (flags, param) => {
       return true;
   }
   return false;
+};
+
+export const isAllovedHeuristic = (heuristicName) => {
+  return HEURISTICS.indexOf(heuristicName) >= 0;
 };

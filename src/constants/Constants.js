@@ -3,5 +3,7 @@ export const DIFFERS_ROWS_AND_COLUMNS = "DIFFERS_ROWS_AND_COLUMNS";
 
 export const FLAGS = {
   filename: ["-f", "--filename"],
-  generate: ["-g", "--generate"],
+  heuristic: ["-h", "--heuristic"],
 };
+
+export const HEURISTICS = ["manh", "lin", "misp"];
