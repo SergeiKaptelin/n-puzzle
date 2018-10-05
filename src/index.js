@@ -7,6 +7,18 @@ import "normalize.css/normalize.css";
 import "./styles/index.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
+  let npuzzle = {
+    heuristic: "manh",
+    field: "3x3",
+  };
+
+  $("#3x3").click(() => handleDrawField("3x3"));
+  $("#4x4").click(() => handleDrawField("4x4"));
+  $("#manhattanDistance").click(() => npuzzle.heuristic = "manh");
+  $("#linearConflicts").click(() => npuzzle.heuristic = "lin");
+  $("#misplacedTiles").click(() => npuzzle.heuristic = "misp");
+
+
   $("#solve").click(start);
   $("#show-solutions").click(showSolution);
 
@@ -15,6 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
   var cellDisplacement = "69px";
 
   $(".start .cell").click(moveTile);
+
+  const handleDrawField = (fieldName) => {
+    const largeField = $(".largeField");
+    const smallField = $(".smallField");
+    switch (fieldName) {
+      case "3x3":
+        largeField.fadeOut("fast", () => smallField.fadeIn("slow"));
+        return;
+      case "4x4":
+        smallField.fadeOut("fast", () => largeField.fadeIn("slow"));
+        return;
+    }
+  };
 
   function moveTile() {
     // Gets the position of the current element
@@ -128,4 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     panel.innerHTML += "Step: " + step + " -> " + solution[step] + " ,";
     step++;
   }
+
+  handleDrawField("3x3");
 });
