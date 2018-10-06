@@ -6,12 +6,16 @@ import PuzzleGenerator from "./puzzle/PuzzleGenerator";
 
 import "normalize.css/normalize.css";
 import "./styles/index.scss";
+import {generateGoal} from "./puzzle/Puzzle";
 
 document.addEventListener("DOMContentLoaded", () => {
   let npuzzle = {
     heuristic: "manh",
     field: "3x3",
+    size: 3,
     puzzle: [[]],
+    emptyRow: 2,
+    emptyCol: 2,
   };
 
   $("#3x3").click(() => handleDrawField("3x3"));
@@ -20,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#linearConflicts").click(() => npuzzle.heuristic = "lin");
   $("#misplacedTiles").click(() => npuzzle.heuristic = "misp");
   $(".random-button").click(() => handleRandomizeField());
+  $(".solve-button").click(() => handleSolve());
 
 
   $("#solve").click(start);
@@ -34,31 +39,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const handleDrawField = (fieldName) => {
     const largeField = $(".largeField");
     const smallField = $(".smallField");
+
+    $(".result").fadeOut();
     switch (fieldName) {
       case "3x3":
         largeField.fadeOut("fast", () => smallField.fadeIn("slow"));
         npuzzle.field = fieldName;
-        return;
+        npuzzle.size = 3;
+        break;
       case "4x4":
         smallField.fadeOut("fast", () => largeField.fadeIn("slow"));
         npuzzle.field = fieldName;
-        return;
+        npuzzle.size = 4;
+        break;
     }
+    handleRandomizeField();
+  };
+
+  const handleSolve = () => {
+    const goalPuzzle = generateGoal(npuzzle.size);
+    const init = new Node(0, npuzzle.puzzle, npuzzle.emptyRow, npuzzle.emptyCol, 0);
+    const goal = new Node(0, goalPuzzle.state, goalPuzzle.emptyRow, goalPuzzle.emptyCol, 0);
+    const astar = new AStar(init, goal, 0);
+    $("#loading").removeClass("hide");
+    npuzzle.field === "3x3" ? resolvePuzzle(astar) : setTimeout(() => resolvePuzzle(astar), 100);
   };
 
   const handleRandomizeField = () => {
-    let size = 3;
-    switch (npuzzle.field) {
-      case "3x3":
-        size = 3;
-        break;
-      case "4x4":
-        size = 4;
-        break;
-    }
-    const puzzleGenerator = new PuzzleGenerator(size);
+    const puzzleGenerator = new PuzzleGenerator(npuzzle.size);
     npuzzle.puzzle = puzzleGenerator.generate();
+    $(".result").fadeOut();
     insertRandomizedField(npuzzle.puzzle);
+  };
+
+  const resolvePuzzle = (astar) => {
+    const startTime = new Date();
+    const result = astar.execute(npuzzle.heuristic);
+    const endTime = new Date();
+    $("#loading").addClass("hide");
+    $(".complexity-in-time").text(`${result.complexityInTime}`);
+    $(".complexity-in-size").text(`${result.complexityInSize}`);
+    $(".number-of-moves").text(`${result.path.length}`);
+    $(".sequence-of-states").text(`${result.path.split("").join("-")}`);
+    $(".completed-in").text(`${endTime - startTime} ms`);
+    $(".result").fadeIn();
   };
 
   const insertRandomizedField = (puzzle) => {
@@ -81,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (puzzle[i][j] === 0) {
           node.addClass("empty");
           node.text("");
+          npuzzle.emptyRow = i;
+          npuzzle.emptyCol = j;
         } else {
           node.hasClass("empty") && node.removeClass("empty");
           node.text(`${puzzle[i][j]}`);
@@ -203,4 +229,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   handleDrawField("3x3");
+  handleRandomizeField();
 });

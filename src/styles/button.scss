@@ -20,6 +20,10 @@ button:visited {
   cursor: pointer;
 }
 
+.button:focus {
+  outline: none;
+}
+
 .btnBlueGreen {
   background: #00AE68;
 }
