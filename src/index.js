@@ -2,6 +2,7 @@ import $ from "jquery";
 
 import AStar from "./core/Algorithm";
 import Node from "./core/Node";
+import PuzzleGenerator from "./puzzle/PuzzleGenerator";
 
 import "normalize.css/normalize.css";
 import "./styles/index.scss";
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let npuzzle = {
     heuristic: "manh",
     field: "3x3",
+    puzzle: [[]],
   };
 
   $("#3x3").click(() => handleDrawField("3x3"));
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#manhattanDistance").click(() => npuzzle.heuristic = "manh");
   $("#linearConflicts").click(() => npuzzle.heuristic = "lin");
   $("#misplacedTiles").click(() => npuzzle.heuristic = "misp");
+  $(".random-button").click(() => handleRandomizeField());
 
 
   $("#solve").click(start);
@@ -34,10 +37,55 @@ document.addEventListener("DOMContentLoaded", () => {
     switch (fieldName) {
       case "3x3":
         largeField.fadeOut("fast", () => smallField.fadeIn("slow"));
+        npuzzle.field = fieldName;
         return;
       case "4x4":
         smallField.fadeOut("fast", () => largeField.fadeIn("slow"));
+        npuzzle.field = fieldName;
         return;
+    }
+  };
+
+  const handleRandomizeField = () => {
+    let size = 3;
+    switch (npuzzle.field) {
+      case "3x3":
+        size = 3;
+        break;
+      case "4x4":
+        size = 4;
+        break;
+    }
+    const puzzleGenerator = new PuzzleGenerator(size);
+    npuzzle.puzzle = puzzleGenerator.generate();
+    insertRandomizedField(npuzzle.puzzle);
+  };
+
+  const insertRandomizedField = (puzzle) => {
+    let domField = undefined;
+    switch (npuzzle.field) {
+      case "3x3":
+        domField = $(".smallField");
+        break;
+      case "4x4":
+        domField = $(".largeField");
+        break;
+    }
+
+    if (!domField) {
+      return;
+    }
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle[i].length; j++) {
+        const node = domField.find(`[data-pos='${i},${j}']`);
+        if (puzzle[i][j] === 0) {
+          node.addClass("empty");
+          node.text("");
+        } else {
+          node.hasClass("empty") && node.removeClass("empty");
+          node.text(`${puzzle[i][j]}`);
+        }
+      }
     }
   };
 

@@ -5,7 +5,8 @@ import Node from "./core/Node";
 import {usage} from "./notifications/Notification";
 import {findFlags} from "./utils/flagsUtils";
 import {validateParams, isAllovedHeuristic} from "./validations/ParamsValidations";
-import {loadPuzzle, generateGoal, isSolvable} from "./puzzle/Puzzle";
+import {generateGoal, isSolvable} from "./puzzle/Puzzle";
+import {loadPuzzle} from "./utils/loadPuzzle";
 
 const flagIndexes = findFlags();
 validateParams(flagIndexes);
