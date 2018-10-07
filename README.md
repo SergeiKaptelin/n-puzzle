@@ -7,7 +7,7 @@ N-puzzle solver in JavaScript using A* algorithm with manhattan distance, linear
  ```
  
 ## Usage:
-####If you execute in terminal:
+#### If you execute in terminal:
 ```sh
 ./npuzzle -f filename -h (manh | lin | misp)
 ```
@@ -26,7 +26,7 @@ E.g.
 ./npuzzle -f ./puzzle_fields/3-1-s.txt -h manh
 ```
 
-####If you execute in browser:
+#### If you execute in browser:
 ```sh
 npm start
 ```
