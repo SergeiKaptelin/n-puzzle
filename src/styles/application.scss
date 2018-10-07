@@ -117,7 +117,9 @@ html, body {
 
 .button-section {
   display: flex;
+  align-items: center;
   margin-bottom: 40px;
+  min-height: 107px;
 }
 
 .result-option-wrap {
@@ -130,4 +132,20 @@ html, body {
 
 .hide {
   display: none !important;
+}
+
+.play-wrap {
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .play-button {
+    cursor: pointer;
+  }
+}
+
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.4;
 }

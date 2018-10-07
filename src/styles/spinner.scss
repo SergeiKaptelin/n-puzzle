@@ -1,6 +1,7 @@
 $beige: rgba(253, 227, 167, 0.4);
 $black: #333;
 
+// Loading spinner
 #loading {
   background-color: $beige;
   position: absolute;
@@ -32,3 +33,49 @@ $black: #333;
   75% { transform: scale(1.2) rotate(270deg); }
   100% { transform: scale(1) rotate(360deg); }
 }
+
+// Play button
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stroke-dotted {
+  opacity: 0;
+  stroke-dasharray: 4,5;
+  stroke-width: 1px;
+  transform-origin: 50% 50%;
+  animation: spin 4s infinite linear;
+  transition: opacity 1s ease,
+  stroke-width 1s ease;
+  stroke: #1240c3;
+}
+
+.stroke-solid {
+  stroke-dashoffset: 0;
+  stroke-dashArray: 300;
+  stroke-width: 4px;
+  transition: stroke-dashoffset 1s ease,
+  opacity 1s ease;
+}
+
+.icon {
+  transform-origin: 50% 50%;
+  transition: 500ms ease-out;
+}
+
+// Hover
+#play:hover {
+  .stroke-dotted {
+    stroke-width: 4px;
+    opacity: 1;
+  }
+  .stroke-solid {
+    opacity: 0;
+    stroke-dashoffset: 300;
+  }
+  .icon {
+    transform: scale(1.2) rotate(360deg);
+    fill: #1240c3;
+  }
+}
+
