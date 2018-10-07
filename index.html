@@ -4,25 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>n-puzzle</title>
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" value="Webpack basic starter project">
-    <meta name="Description" content="A simple webpack starter project for your basic web development needs."/>
-    <!-- Open Graph data -->
-    <meta property="og:title" content="Webpack basic starter project" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://lifenautjoe.github.io/webpack-starter-basic/" />
-    <meta property="og:image" content="https://i.snag.gy/i3eMBc.jpg" />
-    <meta property="og:description" content="A simple webpack starter project for your basic web development needs." />
-    <!-- Mobile header color for Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#ff4970">
-    <!-- Mobile header color Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="{{mobileHeaderColor}}">
-    <!-- Mobile header color for iOS Safari (supports black, black-translucent or default) -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 </head>
 <body>
-
 <div class="section">
   <h1 class="title">
     N-puzzle
@@ -72,7 +55,7 @@
       </div>
     </div>
     <div class="puzzle-configuration">
-      <div class="configuration-title">
+      <div class="subtitle text-center">
         Puzzle configuration
       </div>
       <div class="options-wrap">
@@ -120,11 +103,48 @@
     </div>
   </div>
   <div class="button-section">
-    <button href="" class="button btnFloat btnLightBlue random-button">Random</button>
-    <button href="" class="button btnFloat btnBlueGreen solve-button">Solve</button>
+    <button class="button btnFloat btnLightBlue random-button">Random</button>
+    <button class="button btnFloat btnBlueGreen solve-button">Solve</button>
   </div>
-  <div class="result">
-    Result
+  <div class="result" style="display: none;">
+    <div class="subtitle">
+      Result
+    </div>
+    <div class="result-option-wrap">
+      <span class="result-label">
+        Complexity in time:
+      </span>
+      <span class="complexity-in-time"></span>
+    </div>
+    <div class="result-option-wrap">
+      <span class="result-label">
+        Complexity in size:
+      </span>
+      <span class="complexity-in-size"></span>
+    </div>
+    <div class="result-option-wrap">
+      <span class="result-label">
+        Number of moves:
+      </span>
+      <span class="number-of-moves"></span>
+    </div>
+    <div class="result-option-wrap">
+      <span class="result-label">
+        The ordered sequence of states:
+      </span>
+      <span class="sequence-of-states"></span>
+    </div>
+    <div class="result-option-wrap">
+      <span class="result-label">
+        Completed in:
+      </span>
+      <span class="completed-in"></span>
+    </div>
+  </div>
+  <div id="loading" class="hide">
+    <table><tr><td>
+      <div id="spinner"></div>
+    </td></tr></table>
   </div>
 </div>
 </body>

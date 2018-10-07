@@ -54,6 +54,7 @@ html, body {
   line-height: 80px;
   font-size: 30px;
   border-radius: 4px;
+  transition: 0.8s;
 }
 
 .cell {
@@ -74,13 +75,6 @@ html, body {
   justify-content: center;
   padding: 20px 25px 10px;
   width: 46%;
-
-  .configuration-title {
-    font-size: 26px;
-    margin-bottom: 25px;
-    font-weight: bold;
-    text-align: center;
-  }
 
   .conf-label {
     min-width: 150px;
@@ -111,7 +105,29 @@ html, body {
   }
 }
 
+.subtitle {
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .button-section {
   display: flex;
   margin-bottom: 40px;
+}
+
+.result-option-wrap {
+  margin-bottom: 10px;
+
+  .result-label {
+    font-weight: bold;
+  }
+}
+
+.hide {
+  display: none !important;
 }

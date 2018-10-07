@@ -26,7 +26,7 @@ if (!isSolvable(puzzle.state)) {
 }
 
 const init = new Node(0, puzzle.state, puzzle.emptyRow, puzzle.emptyCol, 0);
-const goal = new Node(0, goalPuzzle.state, goalPuzzle.emptyRow, puzzle.emptyCol, 0);
+const goal = new Node(0, goalPuzzle.state, goalPuzzle.emptyRow, goalPuzzle.emptyCol, 0);
 const astar = new AStar(init, goal, 0);
 const startTime = new Date();
 const result = astar.execute(heuristicName);
@@ -36,4 +36,4 @@ console.log(colors.green("Complexity in time:"), colors.yellow(result.complexity
 console.log(colors.green("Complexity in size:"), colors.yellow(result.complexityInSize));
 console.log(colors.green("Number of moves:"), colors.yellow(result.path.length));
 console.log(colors.green("The ordered sequence of states:"), colors.yellow(result.path.split("").join("-")));
-console.log(colors.green("Completed in:"), colors.yellow(endTime - startTime), colors.green("milliseconds"));
+console.log(colors.green("Completed in:"), colors.yellow(endTime - startTime), colors.green("ms"));

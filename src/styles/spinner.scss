@@ -1,0 +1,34 @@
+$beige: rgba(253, 227, 167, 0.4);
+$black: #333;
+
+#loading {
+  background-color: $beige;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  table, tr, td {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+#spinner {
+  width: 40px;
+  height: 40px;
+  border: dashed 10px $black;
+  margin: 0 auto;
+  animation-name: spinner-one;
+  animation-duration: 2.3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spinner-one {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(45deg); }
+  50% { transform: scale(0.6) rotate(90deg); }
+  75% { transform: scale(1.2) rotate(270deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
