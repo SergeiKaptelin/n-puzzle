@@ -11,6 +11,9 @@ module.exports = {
     overlay: true,
     stats: 'errors-only'
   },
+  output: {
+    filename: "js/[name].[hash:6].js"
+  },
   module: {
     rules: [
       {
