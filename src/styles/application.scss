@@ -14,6 +14,9 @@ html, body {
 .section {
   max-width: 800px;
   margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 100px;
 }
 
 .title {
@@ -21,6 +24,11 @@ html, body {
   padding-top: 40px;
   margin-bottom: 60px;
   margin-top: 0;
+
+  @media (max-width: 767px) {
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .wrapper {
@@ -28,6 +36,10 @@ html, body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+  }
 }
 
 .field {
@@ -43,15 +55,16 @@ html, body {
 }
 
 .cell, .empty {
-  width: 80px;
-  height: 80px;
+  $size: 80px;
+  width: $size;
+  height: $size;
   float: left;
   text-align: center;
   font-weight: bold;
   position: relative;
   margin-right: 1px;
   margin-bottom: 1px;
-  line-height: 80px;
+  line-height: $size;
   font-size: 30px;
   border-radius: 4px;
   transition: 0.8s;
@@ -60,6 +73,17 @@ html, body {
 .cell {
   background-color: white;
   border: solid 1px black;
+}
+
+.largeField {
+  @media (max-width: 767px) {
+    .cell {
+      $size: 65px;
+      width: $size;
+      height: $size;
+      line-height: $size;
+    }
+  }
 }
 
 .empty {
@@ -75,6 +99,13 @@ html, body {
   justify-content: center;
   padding: 20px 25px 10px;
   width: 46%;
+
+  @media (max-width: 767px) {
+    width: unset;
+    margin-bottom: 50px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .conf-label {
     min-width: 150px;
@@ -95,13 +126,25 @@ html, body {
 
   .select-wrap {
     display: inline-block;
+    flex-wrap: wrap;
     margin-bottom: 10px;
     height: 33px;
+
+    @media (max-width: 767px) {
+      margin-top: -5px;
+      margin-bottom: -5px;
+    }
   }
 
   .select-label {
     display: inline-block;
     line-height: 28px;
+    min-width: 145px;
+
+    @media (max-width: 767px) {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
   }
 }
 
@@ -120,6 +163,19 @@ html, body {
   align-items: center;
   margin-bottom: 40px;
   min-height: 107px;
+
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
+
+  .button-block {
+    @media (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      transition: 1s;
+      position: relative;
+    }
+  }
 }
 
 .result-option-wrap {
@@ -139,6 +195,10 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 767px) {
+    width: 55%;
+  }
 
   .play-button {
     cursor: pointer;
