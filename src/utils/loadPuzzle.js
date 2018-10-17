@@ -1,11 +1,15 @@
 import fs from "fs";
 
+import {validateFile} from "../validations/FieldValidations";
+
 import {error} from "../notifications/Notification";
 import {FILE_NOT_EXIST} from "../constants/Constants";
 
 const loadPuzzle = (filename) => {
   if (fs.existsSync(filename)) {
-    const state = fs.readFileSync(filename).toString()
+    const file = fs.readFileSync(filename);
+    validateFile(file);
+    const state = file.toString()
     //removing comments
       .replace(/#.+($|\n)/g, "$1")
       .split("\n")
