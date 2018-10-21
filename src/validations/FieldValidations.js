@@ -47,7 +47,7 @@ const validateFile = (file) => {
         error(INVALID_ROW, row);
         process.exit(0);
       }
-      return row.split(" ").map((cell) => {
+      return row.split(/\s+/g).filter((x) => x.length).map((cell) => {
         if (index > 0 && /[^0-9]/.test(cell)) {
           error(INVALID_ROW, row);
           process.exit(0);
