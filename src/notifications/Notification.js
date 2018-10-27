@@ -11,6 +11,8 @@ import {
   WRONG_NUMBER_COLS,
   LOW_DIMENSION,
   NO_LAST_EMPTY_LINE,
+  TOO_LARGE_NUMBER,
+  HAS_DUPLICATES,
 } from "../constants/Constants";
 
 const errorMessages = (key, message) => {
@@ -35,6 +37,10 @@ const errorMessages = (key, message) => {
       return "Dimension is too low, should be greater than 3";
     case NO_LAST_EMPTY_LINE:
       return "Please add empty line to the end of the file";
+    case TOO_LARGE_NUMBER:
+      return `${colors.yellow(message)} is too large number for this type of field`;
+    case HAS_DUPLICATES:
+      return `Field has duplicate number ${colors.yellow(message)}, please use unique numbers`;
   }
 };
 
