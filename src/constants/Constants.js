@@ -8,6 +8,8 @@ export const WRONG_NUMBER_ROWS = "WRONG_NUMBER_ROWS";
 export const WRONG_NUMBER_COLS = "WRONG_NUMBER_COLS";
 export const LOW_DIMENSION = "LOW_DIMENSION";
 export const NO_LAST_EMPTY_LINE = "NO_LAST_EMPTY_LINE";
+export const TOO_LARGE_NUMBER = "TOO_LARGE_NUMBER";
+export const HAS_DUPLICATES = "HAS_DUPLICATES";
 
 export const FLAGS = {
   filename: ["-f", "--filename"],

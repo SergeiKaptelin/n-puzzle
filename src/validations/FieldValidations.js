@@ -8,6 +8,8 @@ import {
   WRONG_NUMBER_COLS,
   LOW_DIMENSION,
   NO_LAST_EMPTY_LINE,
+  TOO_LARGE_NUMBER,
+  HAS_DUPLICATES,
 } from "../constants/Constants";
 
 const validateFile = (file) => {
@@ -52,20 +54,34 @@ const validateFile = (file) => {
           error(INVALID_ROW, row);
           process.exit(0);
         }
-        return Number(cell);
+        const number = Number(cell);
+        if (number > (dimension * dimension - 1)) {
+          error(TOO_LARGE_NUMBER, number);
+          process.exit(0);
+        }
+        return number;
       });
     });
   if (fileInfo.length - 1 !== dimension) {
     error(WRONG_NUMBER_ROWS);
     process.exit(0);
   }
+  let array = [];
   for (let i = 1; i < fileInfo.length; i++) {
     if (fileInfo[i].length !== dimension) {
       error(WRONG_NUMBER_COLS);
       process.exit(0);
     }
+    array = [...array, ...fileInfo[i]];
+  }
+  const duplicate = hasDuplicates(array);
+  if (duplicate) {
+    error(HAS_DUPLICATES, duplicate);
+    process.exit(0);
   }
 };
+
+const hasDuplicates = (array) => array.find((element, index) => (array.indexOf(element) !== index));
 
 export {
   validateFile,
