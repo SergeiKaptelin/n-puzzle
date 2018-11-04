@@ -12,6 +12,7 @@
   box-shadow: 0 0 0 1px #9a9ca0;
   vertical-align: top;
   transition: .3s;
+  background-color: #ececec;
 }
 
 .select-box:after {
@@ -43,11 +44,11 @@
   transform: rotate(0deg);
 }
 
-.select-box > input {
+.select-box > div > input {
   display: none;
 }
 
-.select-box > label {
+.select-box > div > label {
   display: block;
   height: 30px;
   width: 100%;
@@ -59,16 +60,16 @@
   background: white;
 }
 
-.select-box > label:hover {
+.select-box > div > label:hover {
   background-color: #f4f4f4;
 }
 
-.select-box > input:checked + label {
+.select-box > div > input:checked + label {
   position: absolute;
   top: 0;
 }
 
-.select-box > input:checked + label:hover {
+.select-box > div > input:checked + label:hover {
   background-color: #fff;
   cursor: default;
 }
