@@ -16,7 +16,20 @@ html, body {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 100px;
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    .main-content {
+      position: relative;
+      padding: 0;
+      flex: 1 1;
+    }
+  }
 }
 
 .title {
@@ -178,6 +191,10 @@ html, body {
   }
 }
 
+.result {
+  margin-bottom: 40px;
+}
+
 .result-option-wrap {
   margin-bottom: 10px;
 
@@ -209,3 +226,45 @@ html, body {
   pointer-events: none;
   opacity: 0.4;
 }
+
+.footer {
+  padding-bottom: 10px;
+  text-align: center;
+
+  .link {
+    color: #009999;
+    text-decoration: none;
+
+    &:hover {
+      color: #46c2c7;
+    }
+  }
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,100% {
+    transform: rotate(0);
+  }
+
+  20%,60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm{
+    animation: none;
+  }
+
+  .github-corner .octo-arm{
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+

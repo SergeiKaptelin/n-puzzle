@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const handleDrawField = (fieldName) => {
     const largeField = $(".largeField");
     const smallField = $(".smallField");
+    const linearConflictsElem = $(".linear-conflicts");
+    const misplacedTilesElem = $(".misplaced-tiles");
 
     $(".result").fadeOut();
     switch (fieldName) {
@@ -24,11 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
         largeField.fadeOut("fast", () => smallField.fadeIn("slow"));
         npuzzle.field = fieldName;
         npuzzle.size = 3;
+        linearConflictsElem.removeClass("disabled-button");
+        misplacedTilesElem.removeClass("disabled-button");
         break;
       case "4x4":
         smallField.fadeOut("fast", () => largeField.fadeIn("slow"));
         npuzzle.field = fieldName;
         npuzzle.size = 4;
+        linearConflictsElem.addClass("disabled-button");
+        misplacedTilesElem.addClass("disabled-button");
+        $("#manhattanDistance").prop("checked", true);
+        npuzzle.heuristic = "manh";
         break;
     }
     handleRandomizeField();
