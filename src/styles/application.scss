@@ -12,7 +12,7 @@ html, body {
 }
 
 .section {
-  max-width: 800px;
+  max-width: 840px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
@@ -23,6 +23,7 @@ html, body {
     min-height: 100vh;
     overflow: hidden;
     position: relative;
+    padding: 0 20px;
 
     .main-content {
       position: relative;
@@ -65,13 +66,13 @@ html, body {
 
 .row {
   height: 33.3%;
+  display: flex;
 }
 
 .cell, .empty {
   $size: 80px;
   width: $size;
   height: $size;
-  float: left;
   text-align: center;
   font-weight: bold;
   position: relative;

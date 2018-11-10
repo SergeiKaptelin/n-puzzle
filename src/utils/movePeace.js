@@ -1,8 +1,10 @@
 import $ from "jquery";
 
+const ANIMATION_SPEED = 50;
+
 const movePeace = async (domField, moveDistance, npuzzle) => {
   await asyncForEach(npuzzle.path, async (direction) => {
-    await waitFor(250);
+    await waitFor(500);
     switch (direction) {
       case "U":
         moveUp(domField, moveDistance, npuzzle);
@@ -34,11 +36,11 @@ const moveUp = (domField, moveDistance, npuzzle) => {
 
   peace.animate({
     "top": "+=" + moveDistance //moves up
-  }, 100);
+  }, ANIMATION_SPEED);
 
   empty.animate({
     "top": "-=" + moveDistance //moves down
-  }, 100);
+  }, ANIMATION_SPEED);
 
   npuzzle.emptyRow -= 1;
   peace.attr("data-pos", (npuzzle.emptyRow + 1) + "," + npuzzle.emptyCol);
@@ -51,11 +53,11 @@ const moveDown = (domField, moveDistance, npuzzle) => {
 
   peace.animate({
     "top": "-=" + moveDistance //moves up
-  }, 100);
+  }, ANIMATION_SPEED);
 
   empty.animate({
     "top": "+=" + moveDistance //moves down
-  }, 100);
+  }, ANIMATION_SPEED);
 
   npuzzle.emptyRow += 1;
   peace.attr("data-pos", (npuzzle.emptyRow - 1) + "," + npuzzle.emptyCol);
@@ -68,11 +70,11 @@ const moveLeft = (domField, moveDistance, npuzzle) => {
 
   peace.animate({
     "right": "-=" + moveDistance //moves up
-  }, 100);
+  }, ANIMATION_SPEED);
 
   empty.animate({
     "right": "+=" + moveDistance //moves down
-  }, 100);
+  }, ANIMATION_SPEED);
 
   npuzzle.emptyCol -= 1;
   peace.attr("data-pos", npuzzle.emptyRow + "," + (npuzzle.emptyCol + 1));
@@ -85,11 +87,11 @@ const moveRight = (domField, moveDistance, npuzzle) => {
 
   peace.animate({
     "right": "+=" + moveDistance //moves up
-  }, 100);
+  }, ANIMATION_SPEED);
 
   empty.animate({
     "right": "-=" + moveDistance //moves down
-  }, 100);
+  }, ANIMATION_SPEED);
 
   npuzzle.emptyCol += 1;
   peace.attr("data-pos", npuzzle.emptyRow + "," + (npuzzle.emptyCol - 1));

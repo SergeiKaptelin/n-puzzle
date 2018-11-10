@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $(".result").fadeOut();
     switch (fieldName) {
       case "3x3":
+        $("#3x3").prop("checked", true);
         largeField.fadeOut("fast", () => smallField.fadeIn("slow"));
         npuzzle.field = fieldName;
         npuzzle.size = 3;
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         misplacedTilesElem.removeClass("disabled-button");
         break;
       case "4x4":
+        $("#4x4").prop("checked", true);
         smallField.fadeOut("fast", () => largeField.fadeIn("slow"));
         npuzzle.field = fieldName;
         npuzzle.size = 4;
